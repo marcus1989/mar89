@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body id='mybody'>
+<script>
+function myfunction(){
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function(){
+if(xhttp.readyState == 4 && xhttp.status == 200){
+document.getElementById("mylabel").innerHTML = xhttp.responseText;
+//alert('abc');
+}
+};
+var x = document.getElementById("mylist").value;
+if(x!='None'){
+	xhttp.open("GET", "http://127.0.0.1:5000/getvalues?genename="+x, true);
+	xhttp.send()
+}
+else{
+	document.getElementById("mylabel").innerHTML ='';
+}
+//xhttp.open("POST", "/getvalues", true);
+//xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//xhttp.send("genename =" +x);
+}
+</script>
+<p> Select one gene type</p>
+<select id="mylist" onchange ="myfunction()">
+<option value = "None" selected='selected'>none
+<option value = ">GI100753385">GENE1
+<option value = ">GI100689306">GENE2
+<option value = ">GI100751648">GENE3
+</select>
+<br>
+<br>
+<br>
+<label id ='mylabel'>
+</label>
+</body>
+</html>
